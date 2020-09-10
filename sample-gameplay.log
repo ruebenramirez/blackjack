@@ -1,0 +1,260 @@
+docker pull alpine:3.12
+3.12: Pulling from library/alpine
+Digest: sha256:185518070891758909c9f839cf4ca393ee977ac378609f700f60a771a2dfe321
+Status: Image is up to date for alpine:3.12
+docker.io/library/alpine:3.12
+docker build -t ruebenramirez/blackjack:latest .
+Sending build context to Docker daemon  14.09MB
+Step 1/7 : FROM alpine:3.12
+ ---> a24bb4013296
+Step 2/7 : ENV PYTHONUNBUFFERED=1
+ ---> Using cache
+ ---> 5906c2e22e70
+Step 3/7 : RUN echo "**** install Python ****" &&     apk add --no-cache python3 &&     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi &&         echo "**** install pip ****" &&     python3 -m ensurepip &&     rm -r /usr/lib/python*/ensurepip &&     pip3 install --no-cache --upgrade pip setuptools wheel &&     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
+ ---> Using cache
+ ---> 5cf82b635db0
+Step 4/7 : ADD game /game
+ ---> Using cache
+ ---> 73a070c6b1e5
+Step 5/7 : WORKDIR /game
+ ---> Using cache
+ ---> 9229e60ad239
+Step 6/7 : RUN pip3 install -r requirements.txt
+ ---> Using cache
+ ---> ea126b17ac62
+Step 7/7 : RUN python blackjack.py
+ ---> Using cache
+ ---> 752b46fe4f9d
+Successfully built 752b46fe4f9d
+Successfully tagged ruebenramirez/blackjack:latest
+docker run -ti --rm ruebenramirez/blackjack:latest python blackjack.py
+Player hand: 5 Diamonds Q Clubs 8 Spades = 23
+Dealer hand: 9 Diamonds 8 Spades = 17
+Result: Dealer wins!
+
+Player hand: 4 Clubs 5 Hearts 7 Diamonds = 16
+Dealer hand: J Hearts 2 Hearts 5 Diamonds = 17
+Result: Dealer wins!
+
+Player hand: A Spades 4 Diamonds Q Clubs 6 Clubs = 21
+Dealer hand: J Spades 4 Diamonds 2 Hearts Q Spades = 26
+Result: Player wins!
+
+Player hand: 6 Hearts 10 Spades = 16
+Dealer hand: 3 Spades 7 Clubs Q Diamonds = 20
+Result: Dealer wins!
+
+Player hand: 8 Clubs 9 Diamonds = 17
+Dealer hand: 3 Hearts 7 Clubs J Diamonds = 20
+Result: Dealer wins!
+
+Player hand: 6 Spades 5 Spades 5 Diamonds = 16
+Dealer hand: 6 Hearts K Diamonds = 16
+Result: Push!
+
+Player hand: 10 Spades 3 Clubs J Hearts = 23
+Dealer hand: 2 Diamonds 6 Clubs = 8
+Result: Dealer wins!
+
+Player hand: K Diamonds K Spades = 20
+Dealer hand: J Diamonds A Hearts = 21
+Result: Dealer wins!
+
+Player hand: 8 Clubs 10 Clubs = 18
+Dealer hand: K Hearts 9 Diamonds = 19
+Result: Dealer wins!
+
+Player hand: 8 Spades 5 Diamonds 6 Spades = 19
+Dealer hand: J Clubs 10 Diamonds = 20
+Result: Dealer wins!
+
+Player hand: 9 Clubs Q Hearts = 19
+Dealer hand: 4 Hearts J Spades 10 Spades = 24
+Result: Player wins!
+
+Player hand: 5 Clubs 7 Hearts 5 Diamonds = 17
+Dealer hand: A Diamonds 2 Hearts Q Spades 5 Spades = 18
+Result: Dealer wins!
+
+Player hand: Q Clubs 3 Spades 3 Diamonds = 16
+Dealer hand: J Clubs 8 Diamonds = 18
+Result: Dealer wins!
+
+Player hand: 4 Clubs 4 Hearts 8 Hearts = 16
+Dealer hand: 3 Hearts Q Spades 6 Clubs = 19
+Result: Dealer wins!
+
+Player hand: 9 Diamonds 2 Spades 9 Hearts = 20
+Dealer hand: 2 Clubs 7 Clubs 6 Hearts J Clubs = 25
+Result: Player wins!
+
+Player hand: 7 Hearts A Spades = 18
+Dealer hand: Q Hearts J Spades = 20
+Result: Dealer wins!
+
+Player hand: 10 Clubs A Clubs = 21
+Dealer hand: 7 Clubs A Diamonds 10 Hearts 2 Clubs 9 Hearts = 29
+Result: Player wins!
+
+Player hand: 3 Spades 7 Hearts K Spades = 20
+Dealer hand: 5 Spades A Hearts 8 Diamonds A Hearts A Spades 3 Diamonds K Hearts = 29
+Result: Player wins!
+
+Player hand: 9 Clubs J Hearts = 19
+Dealer hand: 9 Spades 4 Clubs Q Clubs = 23
+Result: Player wins!
+
+Player hand: 5 Diamonds 2 Clubs 3 Diamonds 8 Spades = 18
+Dealer hand: 3 Clubs 9 Spades 7 Spades = 19
+Result: Dealer wins!
+
+Player hand: 5 Clubs 2 Spades J Clubs = 17
+Dealer hand: 4 Diamonds K Clubs Q Hearts = 24
+Result: Player wins!
+
+Player hand: Q Diamonds 6 Clubs = 16
+Dealer hand: 4 Clubs 9 Spades 3 Hearts = 16
+Result: Push!
+
+Player hand: 8 Hearts A Clubs = 19
+Dealer hand: 6 Diamonds Q Diamonds 10 Hearts = 26
+Result: Player wins!
+
+Player hand: 10 Diamonds A Diamonds = 21
+Dealer hand: 6 Spades 5 Hearts 10 Spades = 21
+Result: Push!
+
+Player hand: 8 Clubs 4 Hearts 10 Spades = 22
+Dealer hand: 6 Clubs Q Diamonds = 16
+Result: Dealer wins!
+
+Player hand: 4 Spades 3 Clubs 5 Hearts J Diamonds = 22
+Dealer hand: 5 Spades 10 Hearts = 15
+Result: Dealer wins!
+
+Player hand: 2 Diamonds 5 Clubs K Clubs = 17
+Dealer hand: 6 Hearts 2 Hearts 3 Clubs 7 Clubs = 18
+Result: Dealer wins!
+
+Player hand: 2 Diamonds 3 Clubs 7 Spades 10 Diamonds = 22
+Dealer hand: 9 Hearts Q Diamonds = 19
+Result: Dealer wins!
+
+Player hand: 8 Clubs 7 Spades 4 Hearts = 19
+Dealer hand: 2 Clubs Q Clubs 8 Hearts = 20
+Result: Dealer wins!
+
+Player hand: 7 Diamonds 9 Diamonds = 16
+Dealer hand: 4 Diamonds K Hearts 2 Spades = 16
+Result: Push!
+
+Player hand: K Diamonds A Hearts = 21
+Dealer hand: 10 Hearts 10 Diamonds A Spades = 21
+Result: Push!
+
+Player hand: 4 Spades 5 Clubs A Diamonds = 20
+Dealer hand: 9 Hearts J Clubs 9 Hearts = 28
+Result: Player wins!
+
+Player hand: 8 Clubs A Clubs = 19
+Dealer hand: 3 Clubs 6 Diamonds 6 Diamonds 10 Diamonds = 25
+Result: Player wins!
+
+Player hand: 9 Spades 9 Clubs = 18
+Dealer hand: 2 Hearts 2 Diamonds 6 Spades 10 Hearts = 20
+Result: Dealer wins!
+
+Player hand: 7 Spades 10 Clubs = 17
+Dealer hand: 8 Hearts 9 Hearts = 17
+Result: Push!
+
+Player hand: K Hearts 7 Spades = 17
+Dealer hand: 5 Clubs K Diamonds 7 Hearts = 22
+Result: Player wins!
+
+Player hand: 3 Hearts J Hearts Q Hearts = 23
+Dealer hand: 6 Diamonds 2 Diamonds = 8
+Result: Dealer wins!
+
+Player hand: 7 Hearts 4 Spades 7 Diamonds = 18
+Dealer hand: K Clubs 8 Diamonds = 18
+Result: Push!
+
+Player hand: 8 Clubs 5 Clubs Q Spades = 23
+Dealer hand: A Hearts 4 Diamonds = 15
+Result: Dealer wins!
+
+Player hand: 4 Hearts A Clubs K Spades 8 Diamonds = 23
+Dealer hand: J Spades J Hearts = 20
+Result: Dealer wins!
+
+Player hand: 6 Spades 8 Diamonds 4 Spades = 18
+Dealer hand: 4 Spades 10 Diamonds K Clubs = 24
+Result: Player wins!
+
+Player hand: 5 Hearts 2 Diamonds Q Clubs = 17
+Dealer hand: 4 Spades 8 Spades 3 Diamonds 7 Spades = 22
+Result: Player wins!
+
+Player hand: J Diamonds A Spades = 21
+Dealer hand: 6 Diamonds 8 Hearts J Clubs = 24
+Result: Player wins!
+
+Player hand: J Hearts 8 Spades = 18
+Dealer hand: A Spades Q Spades = 21
+Result: Dealer wins!
+
+Player hand: K Spades 8 Diamonds = 18
+Dealer hand: K Diamonds 7 Diamonds A Diamonds = 18
+Result: Push!
+
+Player hand: A Clubs 9 Clubs = 20
+Dealer hand: 7 Clubs 3 Spades 9 Clubs 10 Clubs = 29
+Result: Player wins!
+
+Player hand: 5 Hearts 8 Hearts 10 Clubs = 23
+Dealer hand: 4 Hearts 3 Spades = 7
+Result: Dealer wins!
+
+Player hand: J Spades 7 Diamonds = 17
+Dealer hand: 3 Hearts 9 Diamonds 2 Spades 10 Clubs = 24
+Result: Player wins!
+
+Player hand: 5 Hearts J Diamonds 3 Spades = 18
+Dealer hand: 4 Clubs K Diamonds K Hearts = 24
+Result: Player wins!
+
+Player hand: Q Hearts 3 Diamonds 2 Clubs K Spades = 25
+Dealer hand: 10 Hearts 4 Diamonds = 14
+Result: Dealer wins!
+
+Player hand: 2 Spades A Diamonds A Clubs 7 Diamonds = 21
+Dealer hand: J Diamonds 9 Clubs 7 Hearts = 26
+Result: Player wins!
+
+Player hand: K Spades Q Diamonds = 20
+Dealer hand: 6 Spades K Hearts K Clubs = 26
+Result: Player wins!
+
+Player hand: K Clubs 6 Diamonds = 16
+Dealer hand: Q Spades J Spades = 20
+Result: Dealer wins!
+
+Player hand: 6 Clubs 2 Clubs 5 Spades 6 Hearts = 19
+Dealer hand: 2 Spades 10 Spades Q Hearts = 22
+Result: Player wins!
+
+Player hand: 3 Diamonds 5 Spades 4 Clubs 9 Spades = 21
+Dealer hand: 9 Spades 3 Hearts 2 Hearts 6 Hearts A Hearts = 21
+Result: Push!
+
+Number of games: 55
+
+Player Success: 36.4%
+
+Player Winning Hand => 20 times
+21 => 4
+20 => 5
+19 => 5
+18 => 2
+17 => 4

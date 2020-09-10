@@ -1,0 +1,3 @@
+
+class OutOfCardsException(Exception):
+    pass
